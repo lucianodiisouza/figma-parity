@@ -50,8 +50,17 @@
 | N1b | `apps/example-expo` harness app + TreeCollector; pipeline verified on real data | `feat:` | ✅ done |
 | —   | Crop extraction chain (rects → scale → makeCropProvider); N2 fully staged | `feat:` | ✅ done |
 | P1  | `@parity/anchors` — durable in-repo store (`.parity/anchors.json`), drift validation, re-pointing | `feat:` | ✅ done |
+| N2  | Real AnthropicJudge run on real crops — full PRD flow verified (FP 0%, gate PASS) | `feat:` | ✅ done |
+| P2  | `@parity/token-sync` — Figma Variables → TokenSet ↔ theme.ts, token-only diffs | `feat:` | ✅ done |
 
 _(code items get appended here as they land)_
+
+## All four PRD pieces implemented
+
+Piece 1 anchors (`@parity/anchors`) · Piece 2 token sync (`@parity/token-sync`) · Piece 3
+harness (verified end-to-end on real device data + real LLM judge) · Piece 4 enumeration
+(`@parity/enumerate`). Still open: Phase-3 PR-bot automation (needs a GitHub token) and
+live Figma Variables fetch (needs `FIGMA_TOKEN`); N3 real labeled set; N5 CLI/CI surface.
 
 ## ▶ NEXT UP (ordered build plan)
 
