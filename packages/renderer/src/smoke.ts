@@ -14,7 +14,7 @@ import { captureRun } from "./capture-run.js";
 const storeDir = process.argv[2] ?? "captures";
 
 // Stub tree until the harness app reports its real accessibility tree.
-const stubTree = async (): Promise<CapturedNode> => ({ role: "screen", children: [] });
+const stubTree = async () => ({ tree: { role: "screen", children: [] } as CapturedNode });
 
 const captures = await captureRun({
   cells: MVP_MATRIX,

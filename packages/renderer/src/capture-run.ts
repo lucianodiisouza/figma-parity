@@ -8,12 +8,14 @@ import { imageSize, phashFromImage } from "./phash.js";
 import { CaptureStore } from "./store.js";
 
 /**
- * Supplies the observed runtime tree for a cell. Tree capture requires cooperation from
- * the app under test (the Expo harness exposes its accessibility tree); simctl alone
- * cannot see inside the app. Until the harness app lands, callers may pass a stub — the
- * frame + pHash capture is real either way.
+ * Supplies the observed runtime tree (and the device pixel ratio) for a cell. Tree
+ * capture requires cooperation from the app under test (the Expo harness reports its
+ * tree); simctl alone cannot see inside the app. Callers may pass a stub — the frame +
+ * pHash capture is real either way.
  */
-export type TreeProvider = (cell: MatrixCell) => Promise<CapturedNode>;
+export type TreeProvider = (
+  cell: MatrixCell,
+) => Promise<{ tree: CapturedNode; scale?: number }>;
 
 export interface CaptureRunOptions {
   cells: MatrixCell[];
@@ -58,7 +60,7 @@ export async function captureRun(opts: CaptureRunOptions): Promise<CellCapture[]
     const png = await readFile(tmpPath);
     await rm(tmpPath, { force: true });
 
-    const [size, phash, tree] = await Promise.all([
+    const [size, phash, report] = await Promise.all([
       imageSize(png),
       phashFromImage(png),
       opts.treeProvider(cell),
@@ -66,7 +68,7 @@ export async function captureRun(opts: CaptureRunOptions): Promise<CellCapture[]
     const frame = await store.put(png, "frame", size);
     log(`${cell.id}: ${size.width}x${size.height} phash=${phash} → ${frame.hash.slice(0, 12)}…`);
 
-    captures.push({ cellId: cell.id, frame, phash, tree });
+    captures.push({ cellId: cell.id, frame, phash, tree: report.tree, scale: report.scale });
   }
   return captures;
 }

@@ -4,10 +4,21 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "include": ["src/**/*.ts"],
+  "include": [
+    "src/**/*.ts"
+  ],
   "references": [
-    { "path": "../matrix" },
-    { "path": "../capture" },
-    { "path": "../manifest" }
+    {
+      "path": "../matrix"
+    },
+    {
+      "path": "../capture"
+    },
+    {
+      "path": "../manifest"
+    },
+    {
+      "path": "../reporter"
+    }
   ]
 }

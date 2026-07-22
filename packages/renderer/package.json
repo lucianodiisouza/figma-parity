@@ -20,7 +20,8 @@
     "sharp": "^0.33.5",
     "@parity/matrix": "workspace:*",
     "@parity/capture": "workspace:*",
-    "@parity/manifest": "workspace:*"
+    "@parity/manifest": "workspace:*",
+    "@parity/reporter": "workspace:*"
   },
   "devDependencies": {
     "@parity/diff": "workspace:*"

@@ -3,16 +3,23 @@ import type { CapturedNode } from "@parity/capture";
 import type { MatrixCell } from "@parity/matrix";
 import type { TreeProvider } from "./capture-run.js";
 
+/** What the harness app POSTs per cell. */
+export interface TreeReport {
+  tree: CapturedNode;
+  /** Device pixels per logical point (PixelRatio.get()), for crop extraction. */
+  scale?: number;
+}
+
 /**
  * Host-side collector for the harness app's tree reports. The app POSTs
- * { cellId, tree } to /tree after each render (the simulator shares the host network);
- * `providerFor()` turns the collected reports into the capture run's TreeProvider,
- * awaiting the report for each cell with a timeout.
+ * { cellId, tree, scale } to /tree after each render (the simulator shares the host
+ * network); `providerFor()` turns the collected reports into the capture run's
+ * TreeProvider, awaiting the report for each cell with a timeout.
  */
 export class TreeCollector {
   private server: Server | undefined;
-  private trees = new Map<string, CapturedNode>();
-  private waiters = new Map<string, (tree: CapturedNode) => void>();
+  private reports = new Map<string, TreeReport>();
+  private waiters = new Map<string, (report: TreeReport) => void>();
 
   constructor(private readonly port = 4823) {}
 
@@ -26,9 +33,14 @@ export class TreeCollector {
       req.on("data", (chunk: Buffer) => (body += chunk.toString()));
       req.on("end", () => {
         try {
-          const { cellId, tree } = JSON.parse(body) as { cellId: string; tree: CapturedNode };
-          this.trees.set(cellId, tree);
-          this.waiters.get(cellId)?.(tree);
+          const { cellId, tree, scale } = JSON.parse(body) as {
+            cellId: string;
+            tree: CapturedNode;
+            scale?: number;
+          };
+          const report: TreeReport = { tree, scale };
+          this.reports.set(cellId, report);
+          this.waiters.get(cellId)?.(report);
           this.waiters.delete(cellId);
           res.writeHead(204).end();
         } catch {
@@ -39,18 +51,18 @@ export class TreeCollector {
     await new Promise<void>((resolve) => this.server!.listen(this.port, "127.0.0.1", resolve));
   }
 
-  /** Await the tree report for a cell (posted before or after the call). */
-  waitFor(cellId: string, timeoutMs = 15_000): Promise<CapturedNode> {
-    const existing = this.trees.get(cellId);
+  /** Await the report for a cell (posted before or after the call). */
+  waitFor(cellId: string, timeoutMs = 15_000): Promise<TreeReport> {
+    const existing = this.reports.get(cellId);
     if (existing) return Promise.resolve(existing);
     return new Promise((resolve, reject) => {
       const timer = setTimeout(() => {
         this.waiters.delete(cellId);
         reject(new Error(`no tree report for cell ${cellId} within ${timeoutMs}ms`));
       }, timeoutMs);
-      this.waiters.set(cellId, (tree) => {
+      this.waiters.set(cellId, (report) => {
         clearTimeout(timer);
-        resolve(tree);
+        resolve(report);
       });
     });
   }
@@ -66,7 +78,7 @@ export class TreeCollector {
 
   /** Drop all collected reports (call before a run so nothing stale is reused). */
   reset(): void {
-    this.trees.clear();
+    this.reports.clear();
   }
 
   async stop(): Promise<void> {
