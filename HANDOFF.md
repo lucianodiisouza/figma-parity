@@ -42,6 +42,7 @@
 | B7 | `@parity/escalate` pass 2 — MockJudge (headless) + AnthropicJudge (claude-opus-4-8) | `feat:` | ✅ done |
 | B8 | `@parity/reporter` — end-to-end pipeline (pass1→escalate→manifest) + human report | `feat:` | ✅ done |
 | B9 | `@parity/eval-harness` — false-positive-rate gate; full-stack test on fixture labels | `feat:` | ✅ done |
+| B10 | `@parity/mcp-server` — thin control-plane tools (summarize/evaluate) over manifests | `feat:` | ✅ done |
 
 _(code items get appended here as they land)_
 
@@ -69,9 +70,26 @@ Phase 0 critical path. Check off as completed; keep the top unchecked item as th
       manifest) + `renderReport` human output. First true end-to-end test lives here.
 - [x] **B9 — Eval harness.** `eval/harness`: `evaluate()` → FP rate / precision / recall vs
       the labeled set; `renderEvalReport()` with a pass/fail gate. The Phase 0 gate.
-- [ ] **B10 — MCP server.** Thin control-plane tools over manifests only.
+- [x] **B10 — MCP server.** `@parity/mcp-server`: `summarize_manifest` + `evaluate_manifest`
+      tools over manifests only. Pure handlers in `tools.ts` (tested); thin stdio wrapper.
 
 After B9 we can answer the question that decides whether the product exists.
+
+## ✅ Phase 0 build (B1–B10) COMPLETE (headless)
+
+All ten milestones landed and tested (46 tests). The full pipeline runs end-to-end on the
+fixture with `MockJudge`. What remains to reach the REAL Phase 0 gate (a measured FP rate
+on real components) needs external resources — see below.
+
+### ▶ NEXT UP (post-B10 — needs external resources / human decisions)
+
+- [ ] **N1 — Real captures (B5 for real).** Wire the renderer to Xcode + iOS simulator to
+      produce real `CellCapture`s (currently only synthetic/fixture captures exist). Needs macOS + Xcode.
+- [ ] **N2 — Real LLM judge run.** Run `AnthropicJudge` on real crops. Needs `ANTHROPIC_API_KEY`.
+- [ ] **N3 — Real labeled set.** Replace fixture labels with human-labeled real component
+      states (resolves Q-006 for real); then run `eval` for a REAL false-positive number.
+- [ ] **N4 — Figma extractor.** Real Figma REST/plugin → IR (currently IR is hand-authored in fixtures).
+- [ ] **N5 — Demo CLI polish + CI surface.** A `parity` CLI + PR-comment integration (Phase 4).
 
 ## Decisions still owned by the human (not blocking the build)
 
