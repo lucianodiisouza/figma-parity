@@ -38,6 +38,9 @@ importers:
       '@parity/matrix':
         specifier: workspace:*
         version: link:../../packages/matrix
+      '@parity/renderer':
+        specifier: workspace:*
+        version: link:../../packages/renderer
       '@parity/reporter':
         specifier: workspace:*
         version: link:../../packages/reporter
@@ -188,6 +191,9 @@ importers:
       '@parity/matrix':
         specifier: workspace:*
         version: link:../matrix
+      '@parity/reporter':
+        specifier: workspace:*
+        version: link:../reporter
       sharp:
         specifier: ^0.33.5
         version: 0.33.5

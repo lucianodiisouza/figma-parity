@@ -4,14 +4,33 @@
     "rootDir": "src",
     "outDir": "dist"
   },
-  "include": ["src/**/*.ts"],
+  "include": [
+    "src/**/*.ts"
+  ],
   "references": [
-    { "path": "../../packages/fixtures" },
-    { "path": "../../packages/matrix" },
-    { "path": "../../packages/enumerate" },
-    { "path": "../../packages/capture" },
-    { "path": "../../packages/escalate" },
-    { "path": "../../packages/reporter" },
-    { "path": "../../eval/harness" }
+    {
+      "path": "../../packages/fixtures"
+    },
+    {
+      "path": "../../packages/matrix"
+    },
+    {
+      "path": "../../packages/enumerate"
+    },
+    {
+      "path": "../../packages/capture"
+    },
+    {
+      "path": "../../packages/escalate"
+    },
+    {
+      "path": "../../packages/reporter"
+    },
+    {
+      "path": "../../eval/harness"
+    },
+    {
+      "path": "../../packages/renderer"
+    }
   ]
 }

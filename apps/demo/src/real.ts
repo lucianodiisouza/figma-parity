@@ -18,11 +18,13 @@ import {
 import type { CellCapture } from "@parity/capture";
 import { coverage } from "@parity/enumerate";
 import { MockJudge } from "@parity/escalate";
+import { CaptureStore, makeCropProvider } from "@parity/renderer";
 import { renderReport, runParity } from "@parity/reporter";
 import { evaluate, renderEvalReport } from "@parity/eval-harness";
 
 const capturesPath = process.argv[2] ?? "captures/captures-default.short.json";
 const captures = JSON.parse(await readFile(capturesPath, "utf8")) as CellCapture[];
+const store = new CaptureStore(process.argv[3] ?? "captures");
 
 const cov = coverage(primaryButtonStateSpace, {
   coveredStateIds: primaryButtonDesignedStates,
@@ -33,6 +35,7 @@ const manifest = await runParity({
   ir: primaryButtonIR,
   captures,
   judge: new MockJudge(),
+  cropProvider: makeCropProvider(store, captures),
   coverage: { covered: cov.covered, total: cov.total },
 });
 

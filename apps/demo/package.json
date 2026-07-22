@@ -15,6 +15,7 @@
     "@parity/capture": "workspace:*",
     "@parity/escalate": "workspace:*",
     "@parity/reporter": "workspace:*",
-    "@parity/eval-harness": "workspace:*"
+    "@parity/eval-harness": "workspace:*",
+    "@parity/renderer": "workspace:*"
   }
 }
