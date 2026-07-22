@@ -1,0 +1,27 @@
+{
+  "name": "@parity/diff",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Diff engine — pass 1 deterministic (structural + pHash). Pass 2 (LLM) lives in @parity/escalate",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@parity/ir": "workspace:*",
+    "@parity/manifest": "workspace:*",
+    "@parity/capture": "workspace:*"
+  },
+  "devDependencies": {
+    "@parity/fixtures": "workspace:*"
+  }
+}
