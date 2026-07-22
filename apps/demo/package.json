@@ -11,6 +11,7 @@
   "dependencies": {
     "@parity/fixtures": "workspace:*",
     "@parity/matrix": "workspace:*",
+    "@parity/enumerate": "workspace:*",
     "@parity/capture": "workspace:*",
     "@parity/escalate": "workspace:*",
     "@parity/reporter": "workspace:*",

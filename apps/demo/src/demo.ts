@@ -5,9 +5,15 @@
  *
  * Run:  pnpm -w build && node apps/demo/dist/demo.js
  */
-import { primaryButtonIR, primaryButtonLabels } from "@parity/fixtures";
+import {
+  primaryButtonDesignedStates,
+  primaryButtonIR,
+  primaryButtonLabels,
+  primaryButtonStateSpace,
+} from "@parity/fixtures";
 import type { CapturedNode, CellCapture } from "@parity/capture";
 import { MVP_MATRIX } from "@parity/matrix";
+import { coverage } from "@parity/enumerate";
 import { MockJudge } from "@parity/escalate";
 import { renderReport, runParity } from "@parity/reporter";
 import { evaluate, renderEvalReport } from "@parity/eval-harness";
@@ -27,12 +33,18 @@ const captures: CellCapture[] = MVP_MATRIX.map((cell) => ({
   tree: tree(cell.dynamicType === "largest"),
 }));
 
+// Piece 4: enumerate the real state space and compute design coverage — no model, pure
+// combinatorics over the component's actual props + the axes Figma can't express.
+const cov = coverage(primaryButtonStateSpace, {
+  coveredStateIds: primaryButtonDesignedStates,
+});
+
 const manifest = await runParity({
   component: "PrimaryButton",
   ir: primaryButtonIR,
   captures,
   judge: new MockJudge(),
-  coverage: { covered: 3, total: 19 },
+  coverage: { covered: cov.covered, total: cov.total },
 });
 
 console.log("─".repeat(64));
@@ -40,4 +52,6 @@ console.log(renderReport(manifest));
 console.log("─".repeat(64));
 console.log(renderEvalReport(evaluate(manifest, primaryButtonLabels), 0.1));
 console.log("─".repeat(64));
+console.log(`Un-drawn states (where bugs live):`);
+for (const s of cov.uncoveredStates) console.log(`  ${s.id}`);
 console.log(`Manifest size across the (hypothetical) MCP boundary: ${JSON.stringify(manifest).length} bytes`);
