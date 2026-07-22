@@ -23,6 +23,9 @@ importers:
       '@parity/capture':
         specifier: workspace:*
         version: link:../../packages/capture
+      '@parity/enumerate':
+        specifier: workspace:*
+        version: link:../../packages/enumerate
       '@parity/escalate':
         specifier: workspace:*
         version: link:../../packages/escalate
@@ -78,6 +81,12 @@ importers:
       '@parity/manifest':
         specifier: workspace:*
         version: link:../manifest
+    devDependencies:
+      '@parity/fixtures':
+        specifier: workspace:*
+        version: link:../fixtures
+
+  packages/enumerate:
     devDependencies:
       '@parity/fixtures':
         specifier: workspace:*

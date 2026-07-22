@@ -4,6 +4,7 @@
     { "path": "packages/ir" },
     { "path": "packages/extractor" },
     { "path": "packages/matrix" },
+    { "path": "packages/enumerate" },
     { "path": "packages/manifest" },
     { "path": "packages/fixtures" },
     { "path": "packages/capture" },

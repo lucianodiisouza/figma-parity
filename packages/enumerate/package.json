@@ -1,0 +1,22 @@
+{
+  "name": "@parity/enumerate",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "State-space enumeration (Piece 4) — combinatorial expansion of realistic states + design coverage",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@parity/fixtures": "workspace:*"
+  }
+}
