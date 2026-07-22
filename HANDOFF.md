@@ -45,6 +45,7 @@
 | B10 | `@parity/mcp-server` — thin control-plane tools (summarize/evaluate) over manifests | `feat:` | ✅ done |
 | —   | `apps/demo` — runnable end-to-end headless demo | `feat:` | ✅ done |
 | N4  | `@parity/extractor` — Figma REST node JSON → IR (pure) + thin REST client | `feat:` | ✅ done |
+| P4  | `@parity/enumerate` — Piece 4 state enumeration + design coverage (Phase 1) | `feat:` | ✅ done |
 
 _(code items get appended here as they land)_
 
@@ -95,6 +96,11 @@ on real components) needs external resources — see below.
       `fetchFigmaNode` REST client. Tested against saved node JSON. To run live: needs a
       `FIGMA_TOKEN` + a token-id→name map and anchor map (the resolvers).
 - [ ] **N5 — Demo CLI polish + CI surface.** A `parity` CLI + PR-comment integration (Phase 4).
+- [x] **P4 — State enumeration (Phase 1 / Piece 4).** `@parity/enumerate`: cartesian
+      expansion of a `StateSpace` (axes + reachability constraints) → `coverage()` report.
+      Fixture declares PrimaryButton's real space (3×3×2 −4 unreachable = 14 states);
+      demo now computes "3 of 14" instead of a hardcoded number and lists un-drawn states.
+      Remaining for full Piece 4: auto-render enumerated states into the harness (needs N1).
 
 ## Decisions still owned by the human (not blocking the build)
 
