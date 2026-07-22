@@ -1,0 +1,29 @@
+{
+  "name": "@parity/reporter",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Pipeline orchestration (pass1 → escalate → manifest) + human-readable parity report",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@parity/ir": "workspace:*",
+    "@parity/capture": "workspace:*",
+    "@parity/diff": "workspace:*",
+    "@parity/manifest": "workspace:*",
+    "@parity/escalate": "workspace:*"
+  },
+  "devDependencies": {
+    "@parity/fixtures": "workspace:*"
+  }
+}

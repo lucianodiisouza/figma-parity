@@ -7,6 +7,7 @@
     { "path": "packages/fixtures" },
     { "path": "packages/capture" },
     { "path": "packages/diff" },
-    { "path": "packages/escalate" }
+    { "path": "packages/escalate" },
+    { "path": "packages/reporter" }
   ]
 }

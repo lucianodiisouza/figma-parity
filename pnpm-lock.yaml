@@ -75,6 +75,28 @@ importers:
 
   packages/matrix: {}
 
+  packages/reporter:
+    dependencies:
+      '@parity/capture':
+        specifier: workspace:*
+        version: link:../capture
+      '@parity/diff':
+        specifier: workspace:*
+        version: link:../diff
+      '@parity/escalate':
+        specifier: workspace:*
+        version: link:../escalate
+      '@parity/ir':
+        specifier: workspace:*
+        version: link:../ir
+      '@parity/manifest':
+        specifier: workspace:*
+        version: link:../manifest
+    devDependencies:
+      '@parity/fixtures':
+        specifier: workspace:*
+        version: link:../fixtures
+
 packages:
 
   '@anthropic-ai/sdk@0.68.0':
