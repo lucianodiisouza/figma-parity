@@ -47,6 +47,9 @@
 | N4  | `@parity/extractor` — Figma REST node JSON → IR (pure) + thin REST client | `feat:` | ✅ done |
 | P4  | `@parity/enumerate` — Piece 4 state enumeration + design coverage (Phase 1) | `feat:` | ✅ done |
 | N1  | `@parity/renderer` — simctl + pHash + store + captureRun; live-verified on sim | `feat:` | ✅ done |
+| N1b | `apps/example-expo` harness app + TreeCollector; pipeline verified on real data | `feat:` | ✅ done |
+| —   | Crop extraction chain (rects → scale → makeCropProvider); N2 fully staged | `feat:` | ✅ done |
+| P1  | `@parity/anchors` — durable in-repo store (`.parity/anchors.json`), drift validation, re-pointing | `feat:` | ✅ done |
 
 _(code items get appended here as they land)_
 
