@@ -11,8 +11,8 @@
  * shares the host network, so localhost reaches the collector run by @parity/renderer.
  * The tree JSON is the @parity/capture CapturedNode wire shape.
  */
-import { useEffect, useMemo, useState } from "react";
-import { SafeAreaView, Text, View } from "react-native";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { PixelRatio, SafeAreaView, Text, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import * as Linking from "expo-linking";
 import { PrimaryButton } from "./PrimaryButton";
@@ -63,42 +63,53 @@ export default function App() {
   const cfg = useMemo(() => parseConfig(url), [url]);
   const label = LABELS[cfg.content] ?? "Continue";
   const [labelInfo, setLabelInfo] = useState<{ truncated: boolean; lines: number } | null>(null);
+  const rootRef = useRef<View>(null);
 
   // Report the observed tree once we know how the label laid out (or immediately when
-  // loading — the label is replaced by a spinner and never lays out).
+  // loading — the label is replaced by a spinner and never lays out). Includes the
+  // button's window-relative rect (logical points) + the device pixel ratio so the host
+  // can extract the failing crop from the stored frame for escalation.
   useEffect(() => {
     const ready = cfg.interaction === "loading" || labelInfo !== null;
     if (cfg.cellId === "unknown" || !ready) return;
 
-    const children =
-      cfg.interaction === "loading"
-        ? [{ anchorId: "cta.spinner", role: "icon", children: [] }]
-        : [
-            {
-              anchorId: "cta.label",
-              role: "text",
-              text: {
-                raw: label,
-                truncated: labelInfo?.truncated ?? false,
-                lines: labelInfo?.lines ?? 1,
-              },
-              children: [],
-            },
-          ];
-    const tree = { anchorId: "cta.root", role: "button", children };
+    // Let layout settle a frame before measuring, then post.
+    const timer = setTimeout(() => {
+      rootRef.current?.measureInWindow((x, y, width, height) => {
+        const rect = { x, y, width, height };
+        const children =
+          cfg.interaction === "loading"
+            ? [{ anchorId: "cta.spinner", role: "icon", rect, children: [] }]
+            : [
+                {
+                  anchorId: "cta.label",
+                  role: "text",
+                  text: {
+                    raw: label,
+                    truncated: labelInfo?.truncated ?? false,
+                    lines: labelInfo?.lines ?? 1,
+                  },
+                  rect,
+                  children: [],
+                },
+              ];
+        const tree = { anchorId: "cta.root", role: "button", rect, children };
 
-    fetch(COLLECTOR, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ cellId: cfg.cellId, tree }),
-    }).catch(() => {
-      // Collector not running (manual use) — fine.
-    });
+        fetch(COLLECTOR, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ cellId: cfg.cellId, tree, scale: PixelRatio.get() }),
+        }).catch(() => {
+          // Collector not running (manual use) — fine.
+        });
+      });
+    }, 50);
+    return () => clearTimeout(timer);
   }, [cfg, label, labelInfo]);
 
   return (
     <SafeAreaView style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <View style={{ direction: cfg.direction, maxWidth: 220 }}>
+      <View ref={rootRef} style={{ direction: cfg.direction, maxWidth: 220 }}>
         <PrimaryButton
           label={label}
           loading={cfg.interaction === "loading"}
