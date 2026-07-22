@@ -37,6 +37,7 @@
 | B1 | Workspace scaffold + `@parity/ir` (types + traversal, tested) | `feat:` | ✅ done |
 | B2 | `@parity/matrix` (8-cell MVP matrix + cartesian generator, tested) | `feat:` | ✅ done |
 | B3 | `@parity/manifest` (divergence manifest + eval labels, zod, tested) | `feat:` | ✅ done |
+| B4 | `@parity/fixtures` (PrimaryButton: component, IR, anchors, labels) | `feat:` | ✅ done |
 
 _(code items get appended here as they land)_
 
@@ -50,8 +51,8 @@ Phase 0 critical path. Check off as completed; keep the top unchecked item as th
       cartesian generator (from [docs/matrix.md](docs/matrix.md)). Unit-tested.
 - [x] **B3 — Manifest + label schemas.** `packages/manifest`: the kilobyte divergence
       manifest that crosses MCP, and the eval-harness label format. Zod-validated.
-- [ ] **B4 — Fixture component + IR.** `apps/example-expo` (or a fixture): one component,
-      its hand-authored anchor, and a checked-in IR document. (resolves Q-006 with a stand-in)
+- [x] **B4 — Fixture component + IR.** `packages/fixtures`: PrimaryButton component,
+      hand-authored anchors, checked-in IR document, and ground-truth labels. (Q-006 stand-in)
 - [ ] **B5 — Renderer/capture orchestration (data plane).** Drive an iOS sim across the 8
       cells, capture frames to a local object store addressed by hash. Simulator-gated;
       provide a `--dry-run` that emits deterministic fake captures so CI/logic works headless.
