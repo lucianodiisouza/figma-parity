@@ -17,7 +17,7 @@ import {
 } from "@parity/fixtures";
 import type { CellCapture } from "@parity/capture";
 import { coverage } from "@parity/enumerate";
-import { MockJudge } from "@parity/escalate";
+import { AnthropicJudge, MockJudge } from "@parity/escalate";
 import { CaptureStore, makeCropProvider } from "@parity/renderer";
 import { renderReport, runParity } from "@parity/reporter";
 import { evaluate, renderEvalReport } from "@parity/eval-harness";
@@ -30,11 +30,17 @@ const cov = coverage(primaryButtonStateSpace, {
   coveredStateIds: primaryButtonDesignedStates,
 });
 
+// Real LLM judge when a key is available (run with `node --env-file=.env`); the
+// deterministic MockJudge otherwise, so the pipeline always runs.
+const useReal = Boolean(process.env["ANTHROPIC_API_KEY"]);
+const judge = useReal ? new AnthropicJudge() : new MockJudge();
+console.log(`judge: ${useReal ? "AnthropicJudge (claude-opus-4-8)" : "MockJudge (deterministic)"}`);
+
 const manifest = await runParity({
   component: "PrimaryButton",
   ir: primaryButtonIR,
   captures,
-  judge: new MockJudge(),
+  judge,
   cropProvider: makeCropProvider(store, captures),
   coverage: { covered: cov.covered, total: cov.total },
 });
