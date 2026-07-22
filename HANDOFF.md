@@ -40,6 +40,7 @@
 | B4 | `@parity/fixtures` (PrimaryButton: component, IR, anchors, labels) | `feat:` | ✅ done |
 | B6 | `@parity/capture` (data-plane contract) + `@parity/diff` pass 1 (structural + pHash) | `feat:` | ✅ done |
 | B7 | `@parity/escalate` pass 2 — MockJudge (headless) + AnthropicJudge (claude-opus-4-8) | `feat:` | ✅ done |
+| B8 | `@parity/reporter` — end-to-end pipeline (pass1→escalate→manifest) + human report | `feat:` | ✅ done |
 
 _(code items get appended here as they land)_
 
@@ -63,7 +64,8 @@ Phase 0 critical path. Check off as completed; keep the top unchecked item as th
 - [x] **B7 — Escalation + diff pass 2 (LLM).** `@parity/escalate`: `Judge` interface,
       `MockJudge` (rule-based, headless), `AnthropicJudge` (claude-opus-4-8, crop-only).
       NOTE: real judge needs `ANTHROPIC_API_KEY`; tests + dry-run use MockJudge.
-- [ ] **B8 — Reporter.** Aggregate cells → divergence manifest + human report.
+- [x] **B8 — Reporter.** `@parity/reporter`: `runParity` pipeline (pass1 → escalate →
+      manifest) + `renderReport` human output. First true end-to-end test lives here.
 - [ ] **B9 — Eval harness.** Labeled-set runner → false-positive rate. The Phase 0 gate.
 - [ ] **B10 — MCP server.** Thin control-plane tools over manifests only.
 
