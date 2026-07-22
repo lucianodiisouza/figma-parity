@@ -35,6 +35,7 @@
 | — | Planning docs (PRD, arch, roadmap, glossary, decisions, open-qs) | `docs:` | ✅ done |
 | — | IR schema draft + matrix definition | `docs:` | ✅ done |
 | B1 | Workspace scaffold + `@parity/ir` (types + traversal, tested) | `feat:` | ✅ done |
+| B2 | `@parity/matrix` (8-cell MVP matrix + cartesian generator, tested) | `feat:` | ✅ done |
 
 _(code items get appended here as they land)_
 
@@ -44,7 +45,7 @@ Phase 0 critical path. Check off as completed; keep the top unchecked item as th
 
 - [x] **B1 — Workspace scaffold.** pnpm workspace, root tsconfig (project refs), shared
       `packages/ir` with the IR types from [docs/ir-schema.md](docs/ir-schema.md). Vitest wired.
-- [ ] **B2 — Matrix package.** `packages/matrix`: the 8-cell reduced matrix as data +
+- [x] **B2 — Matrix package.** `packages/matrix`: the 8-cell reduced matrix as data +
       cartesian generator (from [docs/matrix.md](docs/matrix.md)). Unit-tested.
 - [ ] **B3 — Manifest + label schemas.** `packages/manifest`: the kilobyte divergence
       manifest that crosses MCP, and the eval-harness label format. Zod-validated.
