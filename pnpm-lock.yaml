@@ -89,6 +89,19 @@ importers:
         specifier: workspace:*
         version: link:../../packages/reporter
 
+  packages/anchors:
+    dependencies:
+      '@parity/ir':
+        specifier: workspace:*
+        version: link:../ir
+      zod:
+        specifier: ^3.24.1
+        version: 3.25.76
+    devDependencies:
+      '@parity/fixtures':
+        specifier: workspace:*
+        version: link:../fixtures
+
   packages/capture:
     dependencies:
       '@parity/ir':

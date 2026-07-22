@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "figmaFileKey": "FIXTURE",
+  "anchors": [
+    {
+      "anchorId": "cta.root",
+      "figmaNodeId": "10:0",
+      "code": {
+        "component": "PrimaryButton",
+        "file": "apps/example-expo/PrimaryButton.tsx"
+      },
+      "note": "The button container — auto-layout row, accent fill."
+    },
+    {
+      "anchorId": "cta.label",
+      "figmaNodeId": "10:1",
+      "code": {
+        "component": "PrimaryButton",
+        "part": "label",
+        "file": "apps/example-expo/PrimaryButton.tsx"
+      },
+      "note": "Single-line label; truncation at large dynamic type is the known bug class."
+    },
+    {
+      "anchorId": "cta.spinner",
+      "figmaNodeId": "10:2",
+      "code": {
+        "component": "PrimaryButton",
+        "part": "spinner",
+        "file": "apps/example-expo/PrimaryButton.tsx"
+      },
+      "note": "Loading state — a state the design does not depict (expected stale vs the frame IR)."
+    }
+  ]
+}
