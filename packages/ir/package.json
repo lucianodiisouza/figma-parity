@@ -1,0 +1,19 @@
+{
+  "name": "@parity/ir",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Normalized IR — the semantic skeleton of a Figma node; the contract everything speaks",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run"
+  }
+}
