@@ -8,6 +8,7 @@
     { "path": "packages/capture" },
     { "path": "packages/diff" },
     { "path": "packages/escalate" },
-    { "path": "packages/reporter" }
+    { "path": "packages/reporter" },
+    { "path": "eval/harness" }
   ]
 }
