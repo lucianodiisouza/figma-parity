@@ -108,6 +108,12 @@ on real components) needs external resources — see below.
       → `node packages/renderer/dist/real-run.js <lan-ip>:8081 captures default.short`
       → `node apps/demo/dist/real.js`.
 - [ ] **N2 — Real LLM judge run.** Run `AnthropicJudge` on real crops. Needs `ANTHROPIC_API_KEY`.
+      **Everything else is ready:** crop extraction is live — the app reports measured
+      rects (`measureInWindow` + `PixelRatio`), `CellCapture.scale` maps points→pixels,
+      and `makeCropProvider` (packages/renderer/src/crops.ts) cuts the padded failing
+      region from the stored frame (verified visually: the "Conti…" truncated button).
+      Escalated cells now carry a real crop through the pipeline. To complete N2: export
+      the key, swap `new MockJudge()` → `new AnthropicJudge()` in apps/demo/src/real.ts.
 - [ ] **N3 — Real labeled set.** Replace fixture labels with human-labeled real component
       states (resolves Q-006 for real); then run `eval` for a REAL false-positive number.
 - [x] **N4 — Figma extractor.** `@parity/extractor`: pure `extractIR(figmaNode, ...)` (Figma
