@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src/**/*.ts"],
+  "references": [
+    { "path": "../../packages/fixtures" },
+    { "path": "../../packages/matrix" },
+    { "path": "../../packages/capture" },
+    { "path": "../../packages/escalate" },
+    { "path": "../../packages/reporter" },
+    { "path": "../../eval/harness" }
+  ]
+}

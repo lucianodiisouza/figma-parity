@@ -1,0 +1,19 @@
+{
+  "name": "@parity/demo",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "End-to-end headless demo of the Phase 0 pipeline on the PrimaryButton fixture",
+  "scripts": {
+    "build": "tsc -b",
+    "start": "node dist/demo.js"
+  },
+  "dependencies": {
+    "@parity/fixtures": "workspace:*",
+    "@parity/matrix": "workspace:*",
+    "@parity/capture": "workspace:*",
+    "@parity/escalate": "workspace:*",
+    "@parity/reporter": "workspace:*",
+    "@parity/eval-harness": "workspace:*"
+  }
+}

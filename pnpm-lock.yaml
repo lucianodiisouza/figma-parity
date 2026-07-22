@@ -18,6 +18,27 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9(@types/node@22.20.1)
 
+  apps/demo:
+    dependencies:
+      '@parity/capture':
+        specifier: workspace:*
+        version: link:../../packages/capture
+      '@parity/escalate':
+        specifier: workspace:*
+        version: link:../../packages/escalate
+      '@parity/eval-harness':
+        specifier: workspace:*
+        version: link:../../eval/harness
+      '@parity/fixtures':
+        specifier: workspace:*
+        version: link:../../packages/fixtures
+      '@parity/matrix':
+        specifier: workspace:*
+        version: link:../../packages/matrix
+      '@parity/reporter':
+        specifier: workspace:*
+        version: link:../../packages/reporter
+
   eval/harness:
     dependencies:
       '@parity/manifest':

@@ -8,8 +8,18 @@ Expo app matches its Figma design intent — **across the state space Figma cann
 
 ## Status
 
-Pre-implementation. Planning docs are in [`docs/`](docs/). The full product spec is
-[`docs/PRD.md`](docs/PRD.md).
+Phase 0 pipeline built and tested end-to-end (headless). Planning docs are in
+[`docs/`](docs/); the full product spec is [`docs/PRD.md`](docs/PRD.md); the resume-from-
+anywhere build tracker is [`HANDOFF.md`](HANDOFF.md).
+
+### Try it
+
+```bash
+pnpm install && pnpm -r build && node apps/demo/dist/demo.js
+```
+
+Runs the full pipeline on the `PrimaryButton` fixture (headless — no simulator, no API key)
+and prints the parity report, the coverage number, and the false-positive-rate gate.
 
 The single risk that decides whether this product exists is the **semantic-diff
 false-positive rate**. Everything is phased to confront that first — see

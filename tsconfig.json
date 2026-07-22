@@ -10,6 +10,7 @@
     { "path": "packages/escalate" },
     { "path": "packages/reporter" },
     { "path": "packages/mcp-server" },
-    { "path": "eval/harness" }
+    { "path": "eval/harness" },
+    { "path": "apps/demo" }
   ]
 }
