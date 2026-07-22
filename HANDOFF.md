@@ -38,6 +38,7 @@
 | B2 | `@parity/matrix` (8-cell MVP matrix + cartesian generator, tested) | `feat:` | ✅ done |
 | B3 | `@parity/manifest` (divergence manifest + eval labels, zod, tested) | `feat:` | ✅ done |
 | B4 | `@parity/fixtures` (PrimaryButton: component, IR, anchors, labels) | `feat:` | ✅ done |
+| B6 | `@parity/capture` (data-plane contract) + `@parity/diff` pass 1 (structural + pHash) | `feat:` | ✅ done |
 
 _(code items get appended here as they land)_
 
@@ -56,8 +57,8 @@ Phase 0 critical path. Check off as completed; keep the top unchecked item as th
 - [ ] **B5 — Renderer/capture orchestration (data plane).** Drive an iOS sim across the 8
       cells, capture frames to a local object store addressed by hash. Simulator-gated;
       provide a `--dry-run` that emits deterministic fake captures so CI/logic works headless.
-- [ ] **B6 — Diff pass 1 (deterministic).** Structural diff (captured tree vs IR) + pHash.
-      Pure functions over fixtures; no device needed.
+- [x] **B6 — Diff pass 1 (deterministic).** Structural diff (captured tree vs IR) + pHash.
+      Pure functions over fixtures; no device needed. Added `@parity/capture` shared contract.
 - [ ] **B7 — Escalation + diff pass 2 (LLM).** Escalation rule; Anthropic call on the failing
       crop only; verdict intent-vs-bug + severity. Mockable client for tests.
 - [ ] **B8 — Reporter.** Aggregate cells → divergence manifest + human report.
