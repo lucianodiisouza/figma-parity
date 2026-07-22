@@ -39,6 +39,7 @@
 | B3 | `@parity/manifest` (divergence manifest + eval labels, zod, tested) | `feat:` | ✅ done |
 | B4 | `@parity/fixtures` (PrimaryButton: component, IR, anchors, labels) | `feat:` | ✅ done |
 | B6 | `@parity/capture` (data-plane contract) + `@parity/diff` pass 1 (structural + pHash) | `feat:` | ✅ done |
+| B7 | `@parity/escalate` pass 2 — MockJudge (headless) + AnthropicJudge (claude-opus-4-8) | `feat:` | ✅ done |
 
 _(code items get appended here as they land)_
 
@@ -59,8 +60,9 @@ Phase 0 critical path. Check off as completed; keep the top unchecked item as th
       provide a `--dry-run` that emits deterministic fake captures so CI/logic works headless.
 - [x] **B6 — Diff pass 1 (deterministic).** Structural diff (captured tree vs IR) + pHash.
       Pure functions over fixtures; no device needed. Added `@parity/capture` shared contract.
-- [ ] **B7 — Escalation + diff pass 2 (LLM).** Escalation rule; Anthropic call on the failing
-      crop only; verdict intent-vs-bug + severity. Mockable client for tests.
+- [x] **B7 — Escalation + diff pass 2 (LLM).** `@parity/escalate`: `Judge` interface,
+      `MockJudge` (rule-based, headless), `AnthropicJudge` (claude-opus-4-8, crop-only).
+      NOTE: real judge needs `ANTHROPIC_API_KEY`; tests + dry-run use MockJudge.
 - [ ] **B8 — Reporter.** Aggregate cells → divergence manifest + human report.
 - [ ] **B9 — Eval harness.** Labeled-set runner → false-positive rate. The Phase 0 gate.
 - [ ] **B10 — MCP server.** Thin control-plane tools over manifests only.
