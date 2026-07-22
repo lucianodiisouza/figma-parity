@@ -93,10 +93,20 @@ on real components) needs external resources — see below.
       driver, and `smoke.js` — VERIFIED live on iPhone 17 Pro sim: 8 cells captured,
       light/dark pHashes cluster correctly. Tree capture is a pluggable `TreeProvider`
       stub until the Expo harness app exists (next: N1b below).
-- [ ] **N1b — Expo harness app.** `apps/example-expo`: minimal Expo app hosting the
-      PrimaryButton with a deep-link route (`parity://{cellId}`) that applies direction/
-      state and reports its accessibility tree (the real `TreeProvider`). Then re-run the
-      pipeline on REAL frames + trees instead of fixtures.
+- [x] **N1b — Expo harness app.** `apps/example-expo` (Expo SDK 57, runs in Expo Go):
+      deep-link route `exp://<host>:8081/--/cell/<cellId>?state=<interaction>.<content>`
+      applies direction + component state; ghost-measure truncation detection (iOS
+      onTextLayout reports the full string even when clipped — measure visible vs
+      unconstrained ghost instead); POSTs its tree to the renderer's `TreeCollector`
+      (port 4823). **VERIFIED end-to-end on real device data:** `real-run.js` captured
+      all 8 cells (real frames + real trees; truncated:true in exactly the 4 largest
+      cells), and `apps/demo/real.js` ran the full pipeline over them → FP 0%, recall
+      100% vs the labeled set, manifest 1749 bytes. Phase 0 flow is real (MockJudge;
+      swap AnthropicJudge when N2's key arrives).
+      Rerun recipe: `npx expo start` in apps/example-expo → open once via
+      `xcrun simctl openurl booted "exp://<lan-ip>:8081/--/cell/x?state=default.short"`
+      → `node packages/renderer/dist/real-run.js <lan-ip>:8081 captures default.short`
+      → `node apps/demo/dist/real.js`.
 - [ ] **N2 — Real LLM judge run.** Run `AnthropicJudge` on real crops. Needs `ANTHROPIC_API_KEY`.
 - [ ] **N3 — Real labeled set.** Replace fixture labels with human-labeled real component
       states (resolves Q-006 for real); then run `eval` for a REAL false-positive number.
