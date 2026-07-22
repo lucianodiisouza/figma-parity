@@ -15,6 +15,19 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9
 
+  packages/fixtures:
+    dependencies:
+      '@parity/ir':
+        specifier: workspace:*
+        version: link:../ir
+      '@parity/manifest':
+        specifier: workspace:*
+        version: link:../manifest
+    devDependencies:
+      '@parity/matrix':
+        specifier: workspace:*
+        version: link:../matrix
+
   packages/ir: {}
 
   packages/manifest:

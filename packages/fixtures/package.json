@@ -1,0 +1,26 @@
+{
+  "name": "@parity/fixtures",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Test fixtures — the MVP PrimaryButton: component, IR, anchors, ground-truth labels",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@parity/ir": "workspace:*",
+    "@parity/manifest": "workspace:*"
+  },
+  "devDependencies": {
+    "@parity/matrix": "workspace:*"
+  }
+}
