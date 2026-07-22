@@ -2,6 +2,7 @@
   "files": [],
   "references": [
     { "path": "packages/ir" },
+    { "path": "packages/extractor" },
     { "path": "packages/matrix" },
     { "path": "packages/manifest" },
     { "path": "packages/fixtures" },

@@ -95,6 +95,12 @@ importers:
         specifier: workspace:*
         version: link:../manifest
 
+  packages/extractor:
+    dependencies:
+      '@parity/ir':
+        specifier: workspace:*
+        version: link:../ir
+
   packages/fixtures:
     dependencies:
       '@parity/ir':
