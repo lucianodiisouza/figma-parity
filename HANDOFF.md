@@ -36,6 +36,7 @@
 | — | IR schema draft + matrix definition | `docs:` | ✅ done |
 | B1 | Workspace scaffold + `@parity/ir` (types + traversal, tested) | `feat:` | ✅ done |
 | B2 | `@parity/matrix` (8-cell MVP matrix + cartesian generator, tested) | `feat:` | ✅ done |
+| B3 | `@parity/manifest` (divergence manifest + eval labels, zod, tested) | `feat:` | ✅ done |
 
 _(code items get appended here as they land)_
 
@@ -47,7 +48,7 @@ Phase 0 critical path. Check off as completed; keep the top unchecked item as th
       `packages/ir` with the IR types from [docs/ir-schema.md](docs/ir-schema.md). Vitest wired.
 - [x] **B2 — Matrix package.** `packages/matrix`: the 8-cell reduced matrix as data +
       cartesian generator (from [docs/matrix.md](docs/matrix.md)). Unit-tested.
-- [ ] **B3 — Manifest + label schemas.** `packages/manifest`: the kilobyte divergence
+- [x] **B3 — Manifest + label schemas.** `packages/manifest`: the kilobyte divergence
       manifest that crosses MCP, and the eval-harness label format. Zod-validated.
 - [ ] **B4 — Fixture component + IR.** `apps/example-expo` (or a fixture): one component,
       its hand-authored anchor, and a checked-in IR document. (resolves Q-006 with a stand-in)
