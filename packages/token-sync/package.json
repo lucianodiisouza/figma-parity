@@ -1,0 +1,22 @@
+{
+  "name": "@parity/token-sync",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Piece 2 — Figma Variables ↔ theme.ts in lockstep; token-only diffs, never regenerated components",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "^3.24.1"
+  }
+}

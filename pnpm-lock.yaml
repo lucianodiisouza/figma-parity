@@ -237,6 +237,12 @@ importers:
         specifier: workspace:*
         version: link:../fixtures
 
+  packages/token-sync:
+    dependencies:
+      zod:
+        specifier: ^3.24.1
+        version: 3.25.76
+
 packages:
 
   '@anthropic-ai/sdk@0.68.0':

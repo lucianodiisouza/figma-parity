@@ -38,6 +38,9 @@
       "path": "packages/reporter"
     },
     {
+      "path": "packages/token-sync"
+    },
+    {
       "path": "packages/mcp-server"
     },
     {
