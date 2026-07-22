@@ -6,3 +6,5 @@ dist/
 .env.local
 captures/
 artifacts/
+*.tsbuildinfo
+.pnpm-store/
