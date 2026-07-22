@@ -8,3 +8,4 @@ captures/
 artifacts/
 *.tsbuildinfo
 .pnpm-store/
+.expo/
