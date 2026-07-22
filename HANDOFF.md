@@ -46,6 +46,7 @@
 | —   | `apps/demo` — runnable end-to-end headless demo | `feat:` | ✅ done |
 | N4  | `@parity/extractor` — Figma REST node JSON → IR (pure) + thin REST client | `feat:` | ✅ done |
 | P4  | `@parity/enumerate` — Piece 4 state enumeration + design coverage (Phase 1) | `feat:` | ✅ done |
+| N1  | `@parity/renderer` — simctl + pHash + store + captureRun; live-verified on sim | `feat:` | ✅ done |
 
 _(code items get appended here as they land)_
 
@@ -86,8 +87,16 @@ on real components) needs external resources — see below.
 
 ### ▶ NEXT UP (post-B10 — needs external resources / human decisions)
 
-- [ ] **N1 — Real captures (B5 for real).** Wire the renderer to Xcode + iOS simulator to
-      produce real `CellCapture`s (currently only synthetic/fixture captures exist). Needs macOS + Xcode.
+- [x] **N1 — Real captures (B5 for real).** `@parity/renderer`: simctl driver (boot,
+      appearance, content_size, screenshot, openurl), real pHash (sharp, 8×8 aHash),
+      hash-addressed `CaptureStore` (answers Q-005 for Phase 0), `captureRun()` matrix
+      driver, and `smoke.js` — VERIFIED live on iPhone 17 Pro sim: 8 cells captured,
+      light/dark pHashes cluster correctly. Tree capture is a pluggable `TreeProvider`
+      stub until the Expo harness app exists (next: N1b below).
+- [ ] **N1b — Expo harness app.** `apps/example-expo`: minimal Expo app hosting the
+      PrimaryButton with a deep-link route (`parity://{cellId}`) that applies direction/
+      state and reports its accessibility tree (the real `TreeProvider`). Then re-run the
+      pipeline on REAL frames + trees instead of fixtures.
 - [ ] **N2 — Real LLM judge run.** Run `AnthropicJudge` on real crops. Needs `ANTHROPIC_API_KEY`.
 - [ ] **N3 — Real labeled set.** Replace fixture labels with human-labeled real component
       states (resolves Q-006 for real); then run `eval` for a REAL false-positive number.
