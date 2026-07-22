@@ -9,6 +9,7 @@
     { "path": "packages/diff" },
     { "path": "packages/escalate" },
     { "path": "packages/reporter" },
+    { "path": "packages/mcp-server" },
     { "path": "eval/harness" }
   ]
 }
