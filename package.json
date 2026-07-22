@@ -1,0 +1,23 @@
+{
+  "name": "figma-parity",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Figma↔Expo Parity Harness — audit the gap between design intent and runtime reality across states Figma can't express",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "pnpm@10.25.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -b",
+    "clean": "tsc -b --clean && rm -rf packages/*/dist"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}
