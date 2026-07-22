@@ -1,18 +1,47 @@
 {
   "files": [],
   "references": [
-    { "path": "packages/ir" },
-    { "path": "packages/extractor" },
-    { "path": "packages/matrix" },
-    { "path": "packages/enumerate" },
-    { "path": "packages/manifest" },
-    { "path": "packages/fixtures" },
-    { "path": "packages/capture" },
-    { "path": "packages/diff" },
-    { "path": "packages/escalate" },
-    { "path": "packages/reporter" },
-    { "path": "packages/mcp-server" },
-    { "path": "eval/harness" },
-    { "path": "apps/demo" }
+    {
+      "path": "packages/ir"
+    },
+    {
+      "path": "packages/extractor"
+    },
+    {
+      "path": "packages/matrix"
+    },
+    {
+      "path": "packages/enumerate"
+    },
+    {
+      "path": "packages/manifest"
+    },
+    {
+      "path": "packages/fixtures"
+    },
+    {
+      "path": "packages/capture"
+    },
+    {
+      "path": "packages/diff"
+    },
+    {
+      "path": "packages/escalate"
+    },
+    {
+      "path": "packages/renderer"
+    },
+    {
+      "path": "packages/reporter"
+    },
+    {
+      "path": "packages/mcp-server"
+    },
+    {
+      "path": "eval/harness"
+    },
+    {
+      "path": "apps/demo"
+    }
   ]
 }

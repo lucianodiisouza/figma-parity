@@ -14,7 +14,7 @@ export const MVP_AXES: MatrixAxes = {
 /** Fixed context for the MVP — iOS simulator, one device, EN locale. */
 export const MVP_CONTEXT: MatrixContext = {
   platform: "ios",
-  device: "iPhone 15",
+  device: "iPhone 17 Pro", // matches the simulator used by the renderer smoke runs
   locale: "en",
 };
 

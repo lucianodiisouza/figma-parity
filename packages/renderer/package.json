@@ -1,0 +1,28 @@
+{
+  "name": "@parity/renderer",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Data-plane renderer/capture — simctl driver, real pHash, hash-addressed store, matrix capture runs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "sharp": "^0.33.5",
+    "@parity/matrix": "workspace:*",
+    "@parity/capture": "workspace:*",
+    "@parity/manifest": "workspace:*"
+  },
+  "devDependencies": {
+    "@parity/diff": "workspace:*"
+  }
+}
