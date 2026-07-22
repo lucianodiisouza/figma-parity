@@ -110,13 +110,14 @@ on real components) needs external resources — see below.
       `xcrun simctl openurl booted "exp://<lan-ip>:8081/--/cell/x?state=default.short"`
       → `node packages/renderer/dist/real-run.js <lan-ip>:8081 captures default.short`
       → `node apps/demo/dist/real.js`.
-- [ ] **N2 — Real LLM judge run.** Run `AnthropicJudge` on real crops. Needs `ANTHROPIC_API_KEY`.
-      **Everything else is ready:** crop extraction is live — the app reports measured
-      rects (`measureInWindow` + `PixelRatio`), `CellCapture.scale` maps points→pixels,
-      and `makeCropProvider` (packages/renderer/src/crops.ts) cuts the padded failing
-      region from the stored frame (verified visually: the "Conti…" truncated button).
-      Escalated cells now carry a real crop through the pipeline. To complete N2: export
-      the key, swap `new MockJudge()` → `new AnthropicJudge()` in apps/demo/src/real.ts.
+- [x] **N2 — Real LLM judge run. DONE — full stack verified.** `AnthropicJudge`
+      (claude-opus-4-8) ran on the 4 real "Conti…" crops via
+      `node --env-file=.env apps/demo/dist/real.js` (key lives in gitignored `.env`;
+      real.ts auto-selects AnthropicJudge when `ANTHROPIC_API_KEY` is present, MockJudge
+      otherwise). Result: all 4 escalated cells judged `bug` with model-written pixel
+      observations; FP 0%, precision 100%, recall 100%, gate PASS; manifest 2360 bytes.
+      The complete PRD flow — sim render → capture → pass-1 diff → crop-only escalation →
+      LLM verdict → manifest → eval — has now run end-to-end on real data.
 - [ ] **N3 — Real labeled set.** Replace fixture labels with human-labeled real component
       states (resolves Q-006 for real); then run `eval` for a REAL false-positive number.
 - [x] **N4 — Figma extractor.** `@parity/extractor`: pure `extractIR(figmaNode, ...)` (Figma
