@@ -31,6 +31,8 @@ on one component because that is where the killing risk lives.
 
 - [PRD.md](docs/PRD.md) — the product requirements (source of truth)
 - [architecture.md](docs/architecture.md) — component map, control/data plane, **stack recommendation**
+- [ir-schema.md](docs/ir-schema.md) — the normalized IR, the contract everything speaks
+- [matrix.md](docs/matrix.md) — the runtime matrix (the reduced 8-cell MVP subset)
 - [roadmap.md](docs/roadmap.md) — phases → epics → concrete tasks
 - [phase-0-mvp.md](docs/phase-0-mvp.md) — the MVP that de-risks false positives
 - [glossary.md](docs/glossary.md) — shared vocabulary (anchor, IR, cell, escalation…)

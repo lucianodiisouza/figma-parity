@@ -19,8 +19,8 @@ real components and show a credible path to keeping it low. If not — stop; the
 
 ### Epic 0.1 — Repo & IR contract
 - [ ] Ratify monorepo shape + stack (decision-log D-002)
-- [ ] Define the normalized IR schema in `packages/ir` (layout, tokens, hierarchy, bindings)
-- [ ] Pick the ground-truth format for "design intent" (open-question Q-003)
+- [x] Draft the normalized IR schema (layout, tokens, hierarchy, bindings) — [ir-schema.md](ir-schema.md); ratify before Epic 0.4
+- [ ] Pick the ground-truth format for "design intent" (open-question Q-003) — IR alone vs IR + annotation layer
 
 ### Epic 0.2 — Single-component setup
 - [ ] Choose the one component (needs realistic states + an existing Figma frame)
@@ -28,7 +28,7 @@ real components and show a credible path to keeping it low. If not — stop; the
 - [ ] Extract its IR from Figma
 
 ### Epic 0.3 — Render & capture (data plane)
-- [ ] Define the 8-cell matrix as data
+- [x] Define the 8-cell matrix as data — [matrix.md](matrix.md)
 - [ ] Drive Expo to render each cell on a simulator (iOS first)
 - [ ] Capture frames out-of-band → object storage, addressed by hash/handle
 
