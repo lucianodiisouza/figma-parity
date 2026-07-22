@@ -43,6 +43,8 @@
 | B8 | `@parity/reporter` — end-to-end pipeline (pass1→escalate→manifest) + human report | `feat:` | ✅ done |
 | B9 | `@parity/eval-harness` — false-positive-rate gate; full-stack test on fixture labels | `feat:` | ✅ done |
 | B10 | `@parity/mcp-server` — thin control-plane tools (summarize/evaluate) over manifests | `feat:` | ✅ done |
+| —   | `apps/demo` — runnable end-to-end headless demo | `feat:` | ✅ done |
+| N4  | `@parity/extractor` — Figma REST node JSON → IR (pure) + thin REST client | `feat:` | ✅ done |
 
 _(code items get appended here as they land)_
 
@@ -88,7 +90,10 @@ on real components) needs external resources — see below.
 - [ ] **N2 — Real LLM judge run.** Run `AnthropicJudge` on real crops. Needs `ANTHROPIC_API_KEY`.
 - [ ] **N3 — Real labeled set.** Replace fixture labels with human-labeled real component
       states (resolves Q-006 for real); then run `eval` for a REAL false-positive number.
-- [ ] **N4 — Figma extractor.** Real Figma REST/plugin → IR (currently IR is hand-authored in fixtures).
+- [x] **N4 — Figma extractor.** `@parity/extractor`: pure `extractIR(figmaNode, ...)` (Figma
+      REST node JSON → IR: layout, token refs via resolver, text, anchors) + thin
+      `fetchFigmaNode` REST client. Tested against saved node JSON. To run live: needs a
+      `FIGMA_TOKEN` + a token-id→name map and anchor map (the resolvers).
 - [ ] **N5 — Demo CLI polish + CI surface.** A `parity` CLI + PR-comment integration (Phase 4).
 
 ## Decisions still owned by the human (not blocking the build)
